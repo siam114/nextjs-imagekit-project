@@ -10,6 +10,9 @@ export interface IUser {
     updatedAt?: Date;
 }
 
-const userSchema = new Schema<IUser>({
-    
-})
+const userSchema = new Schema<IUser>(
+    {
+        email: {type: String, required: true, unique: true},
+        password: {type: String, required: true},
+    }
+)
