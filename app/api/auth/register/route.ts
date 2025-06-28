@@ -21,7 +21,14 @@ export async function POST(request: NextRequest) {
             )
         }
 
-    }catch (error) {
+        await User.create({ email, password });
+        return NextResponse.json({message: "User created successfully"}, {status: 201})
 
+    }catch (error) {
+        console.error("Registration error:", error);
+        return NextResponse.json(
+            {error: "Internal server error"},
+            {status: 500}
+        )
     }
 } 
