@@ -1,5 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { connectToDatabase } from "./db";
 
 export const authOptions:NextAuthOptions = {
     providers: [
@@ -11,7 +12,16 @@ export const authOptions:NextAuthOptions = {
         },
 
         async authorize(credentials) {
+            if(!credentials?.email || !credentials?.password) {
+                throw new Error("Email and password are required");
+            }
 
+            try {
+                await connectToDatabase();
+                
+            }catch (error) {
+                console.log("Database connection error:", error);
+            }
         }
        })
     ]
