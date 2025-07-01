@@ -34,6 +34,12 @@ export const authOptions:NextAuthOptions = {
                 if(!isValid) {
                     throw new Error("Invalid password");
                 }
+
+                return {
+                    id: user._id.toString(),
+                    email: user.email,
+                }
+
             }catch (error) {
                 console.log("Database connection error:", error);
             }
