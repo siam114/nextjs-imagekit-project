@@ -41,7 +41,8 @@ export const authOptions:NextAuthOptions = {
                 }
 
             }catch (error) {
-                console.log("Database connection error:", error);
+                console.error("Auth error:", error);
+                throw error;
             }
         }
        })
