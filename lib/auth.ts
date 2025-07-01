@@ -46,5 +46,14 @@ export const authOptions:NextAuthOptions = {
             }
         }
        })
-    ]
+    ],
+
+    callbacks: {
+        async jwt({ token, user}) {
+            if(user) {
+                token.id = user.id;
+            }
+            return token;
+        }
+    }
 }
