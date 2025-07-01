@@ -26,10 +26,14 @@ export const authOptions:NextAuthOptions = {
                     throw new Error("User not found");
                 }
 
-                await bcrypt.compare(
+                const isValid = await bcrypt.compare(
                     credentials.password,
                     user.password,
                 )
+
+                if(!isValid) {
+                    throw new Error("Invalid password");
+                }
             }catch (error) {
                 console.log("Database connection error:", error);
             }
