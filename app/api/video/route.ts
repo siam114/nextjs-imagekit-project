@@ -11,7 +11,13 @@ export async function GET(){
             return NextResponse.json([], { status: 200 });
         }
 
+        return NextResponse.json(videos);
+
     }catch (error) {
-        console.error("Database connection failed:", error);
+        console.error("Error fetching videos:", error);
+        return NextResponse.json(
+            { error: "Failed to fetch videos",},
+            { status: 500 }
+        );
     }
 }
