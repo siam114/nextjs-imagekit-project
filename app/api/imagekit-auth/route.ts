@@ -11,6 +11,6 @@ export async function GET() {
     return Response.json({ authenticationParameters, publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY })
    }catch (error) {
     console.error("Error generating authentication parameters:", error);
-    // return Response.json({ error: "Failed to generate authentication parameters" }, { status: 500 });
+    return Response.json({ error: "Failed to generate authentication parameters" }, { status: 500 });
    }
 }
