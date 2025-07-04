@@ -1,8 +1,8 @@
 import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
-import Video from "@/models/Video";
+import Video, { IVideo } from "@/models/Video";
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -23,7 +23,7 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(request: NextRequest) {
 
 try {
         const session = await getServerSession(authOptions);
@@ -31,6 +31,17 @@ try {
             return NextResponse.json(
                 { error: "Unauthorized" },
                 { status: 401 }
+            );
+        }
+
+        await connectToDatabase();
+
+        const body: IVideo = await request.json();
+
+        if () {
+            return NextResponse.json(
+                { error: "Missing Required fields" },
+                { status: 400 }
             );
         }
 
