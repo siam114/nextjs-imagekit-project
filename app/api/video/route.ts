@@ -24,28 +24,26 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-try {
-        const session = await getServerSession(authOptions);
-        if (!session) {
-            return NextResponse.json(
-                { error: "Unauthorized" },
-                { status: 401 }
-            );
-        }
+    await connectToDatabase();
 
-        await connectToDatabase();
+    const body: IVideo = await request.json();
 
-        const body: IVideo = await request.json();
-
-        if () {
-            return NextResponse.json(
-                { error: "Missing Required fields" },
-                { status: 400 }
-            );
-        }
-
-}  catch (error) {
-
-}  
+    if (
+      !body.title ||
+      !body.description ||
+      !body.videoUrl ||
+      !body.thumbnailUrl
+    ) {
+      return NextResponse.json(
+        { error: "Missing Required fields" },
+        { status: 400 }
+      );
+    }
+  } catch (error) {}
 }
