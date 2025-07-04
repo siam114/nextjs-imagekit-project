@@ -56,7 +56,14 @@ export async function POST(request: NextRequest) {
         }
     }
 
-    await Video.create(videoData);
+    const newVideo = await Video.create(videoData);
+    return NextResponse.json(newVideo);
 
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error creating video:", error);
+    return NextResponse.json(
+      { error: "Failed to create video" },
+      { status: 500 }
+    );
+  }
 }
