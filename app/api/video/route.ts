@@ -1,5 +1,7 @@
+import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import Video from "@/models/Video";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -19,4 +21,14 @@ export async function GET() {
       { status: 500 }
     );
   }
+}
+
+export async function POST() {
+
+try {
+        const session = await getServerSession(authOptions)
+
+}  catch (error) {
+
+}  
 }
