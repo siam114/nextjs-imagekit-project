@@ -47,18 +47,17 @@ export async function POST(request: NextRequest) {
     }
 
     const videoData = {
-        ...body,
-        controls: body?.controls ?? true,
-        transformation: {
-            height: 1920,
-            width: 1080,
-            quality: body?.transformation?.quality ?? 100
-        }
-    }
+      ...body,
+      controls: body?.controls ?? true,
+      transformation: {
+        height: 1920,
+        width: 1080,
+        quality: body?.transformation?.quality ?? 100,
+      },
+    };
 
     const newVideo = await Video.create(videoData);
     return NextResponse.json(newVideo);
-
   } catch (error) {
     console.error("Error creating video:", error);
     return NextResponse.json(
