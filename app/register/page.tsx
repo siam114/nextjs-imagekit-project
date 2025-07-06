@@ -62,7 +62,13 @@ function RegisterPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
+        <button type="submit">Submit</button>
       </form>
+      <div>
+        <p>
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </div>
     </div>
   );
 }
