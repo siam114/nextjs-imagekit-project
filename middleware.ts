@@ -7,3 +7,10 @@ export default withAuth({
     error: "/error",
   },
 })
+
+export const config = {
+  // Match all paths except for the ones specified
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|login|error).*)",
+  ],
+}
