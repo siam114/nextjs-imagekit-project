@@ -26,7 +26,23 @@ const LoginPage = () => {
 
   return (
     <div>
-      login page
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="email" 
+          placeholder="Email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required
+         />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required
+          />
+      </form>
     </div>
   )
 }
