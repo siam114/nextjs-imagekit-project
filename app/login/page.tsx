@@ -42,7 +42,12 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)} 
           required
           />
+        <button type="submit">Login</button>
       </form>
+      <div>
+        <p>Don&apos;t have an account? <button onClick={()=> router.push('/register')}>Register</button></p>
+
+      </div>
     </div>
   )
 }
